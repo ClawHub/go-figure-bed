@@ -3,6 +3,24 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "5NH2dMx8qr0J1R9+tUSp00Bcwh8=",
+			"path": "github.com/Unknwon/com",
+			"revision": "2d12a219ccaf4befccef496869ebf1c957d50709",
+			"revisionTime": "2019-02-14T22:18:49Z"
+		},
+		{
+			"checksumSHA1": "NL3rpqlAKUgk3vN+9oiRIrwT8DY=",
+			"path": "github.com/astaxie/beego/cache",
+			"revision": "bc8fffe3477beca03c9f0b8e6b67e1e30c1860dd",
+			"revisionTime": "2019-03-14T18:16:15Z"
+		},
+		{
+			"checksumSHA1": "jf/YI3zTT5/Dqvr0V2gLyWzlLbw=",
+			"path": "github.com/astaxie/beego/logs",
+			"revision": "bc8fffe3477beca03c9f0b8e6b67e1e30c1860dd",
+			"revisionTime": "2019-03-14T18:16:15Z"
+		},
+		{
 			"checksumSHA1": "yYFWixCNI+zOoEjuueaAoZj1Eco=",
 			"path": "github.com/astaxie/beego/validation",
 			"revision": "bc8fffe3477beca03c9f0b8e6b67e1e30c1860dd",
