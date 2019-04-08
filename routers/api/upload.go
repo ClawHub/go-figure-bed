@@ -53,13 +53,14 @@ func UploadImage(c *gin.Context) {
 		return
 	}
 	//验证文件类型
-	illegality := validate(h.Header.Get("Content-Type"), h.Filename)
-	if illegality {
+	legal := validate(h.Header.Get("Content-Type"), h.Filename)
+	if !legal {
 		logging.HTTPLogger.Error("file type err")
 		appG.Response(http.StatusInternalServerError, e.ERROR_FILE_TYPE, nil)
 		return
 
 	}
+	c.Set("email", "ssss")
 	//获取email
 	email := c.GetString("email")
 	if email == "" {
@@ -84,7 +85,7 @@ func UploadImage(c *gin.Context) {
 
 //处理文件上传
 func HandleApis(email string, apis []string, f multipart.File, h *multipart.FileHeader) (urls []string) {
-	//imgMime := h.Header.Get("Content-Type")
+	imgMime := h.Header.Get("Content-Type")
 	imgInfo := h.Header.Get("Content-Disposition")
 	//读取文件名称
 	imgName := utils.GetFileNameByMimeType(imgInfo)
@@ -92,16 +93,25 @@ func HandleApis(email string, apis []string, f multipart.File, h *multipart.File
 	fileContent := make([]byte, size)
 	_, _ = f.Read(fileContent)
 	var url string
-
 	//如果输入的apis内容为空
-	if apis[0] != "" {
+	if apis[0] == "" {
 		//API默认图床选择
 		switch setting.AppSetting.ApiDefault {
 		case "Local":
 			showUrl, backUrl, del, path := server.UpLoadToLocal(imgName, fileContent)
+			url = showUrl
 			fmt.Println(showUrl, backUrl, del, path)
 		case "SouGou":
+			url = server.UpLoadToSouGou(fileContent)
+			proxyUrl := setting.AppSetting.SiteUrl + "api/proxy?url=" + url
+			fmt.Println(proxyUrl)
 		case "Sina":
+			if setting.BedSetting.Sina.OpenSinaPicStore == false {
+				url = ""
+			} else {
+				url = server.UpLoadToSina(fileContent, imgMime)
+			}
+			fmt.Println(url)
 		case "Smms":
 		case "CC":
 		case "Flickr":
@@ -144,10 +154,10 @@ var picType = []string{"png", "jpg", "jpeg", "gif", "bmp"}
 //验证文件后缀&文件MIME
 func validate(contentType string, fileName string) bool {
 	//首先检测文件的后缀
-	illegality := true
+	illegality := false
 	for _, pType := range picType {
 		if strings.HasSuffix(fileName, pType) {
-			illegality = false
+			illegality = true
 			break
 		}
 	}
@@ -155,10 +165,10 @@ func validate(contentType string, fileName string) bool {
 	if strings.HasPrefix(contentType, "image") && illegality {
 		for _, pType := range picType {
 			if strings.HasSuffix(contentType, pType) {
-				return false
+				return true
 			}
 		}
 
 	}
-	return true
+	return false
 }

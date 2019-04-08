@@ -16,6 +16,8 @@ type App struct {
 	SiteUploadMaxSize int64
 	//Api 默认上传图床
 	ApiDefault string
+	//网站链接
+	SiteUrl string
 }
 
 var AppSetting = &App{}
@@ -31,27 +33,27 @@ type Server struct {
 
 var ServerSetting = &Server{}
 
-//上传到本地
-type LocalStore struct {
-	Open            bool
-	StorageLocation string
-	Link            string
+//图床配置
+type Bed struct {
+	LocalStore
+	Sina
 }
 
-var LocalStoreSetting = &LocalStore{}
+var BedSetting = &Bed{}
 
 var cfg *ini.File
 
 func Setup() {
 	var err error
-	cfg, err = ini.Load("conf/app.ini")
+	cfg, err = ini.Load("app.ini")
 	if err != nil {
-		logging.AppLogger.Fatal("setting.Setup, fail to parse 'conf/app.ini' ", zap.Error(err))
+		logging.AppLogger.Fatal("setting.Setup, fail to parse 'app.ini' ", zap.Error(err))
 	}
 
 	MapTo("app", AppSetting)
 	MapTo("server", ServerSetting)
-	MapTo("localStore", LocalStoreSetting)
+	//不指定Section
+	MapToRoot(BedSetting)
 	//图片规格 MB 2^20
 	AppSetting.SiteUploadMaxSize = AppSetting.SiteUploadMaxSize << 20
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
@@ -62,5 +64,11 @@ func MapTo(section string, v interface{}) {
 	err := cfg.Section(section).MapTo(v)
 	if err != nil {
 		logging.AppLogger.Fatal("Cfg.MapTo Setting err' ", zap.Error(err))
+	}
+}
+func MapToRoot(v interface{}) {
+	err := cfg.MapTo(v)
+	if err != nil {
+		logging.AppLogger.Fatal("Cfg.MapToRoot Setting err' ", zap.Error(err))
 	}
 }
