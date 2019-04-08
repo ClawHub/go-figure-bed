@@ -113,7 +113,12 @@ func HandleApis(email string, apis []string, f multipart.File, h *multipart.File
 			}
 			fmt.Println(url)
 		case "Smms":
+			url = server.UploadToSmms(fileContent, imgInfo)
+			fmt.Println(url)
 		case "CC":
+			durl, del := server.UploadToCC(fileContent, imgInfo, imgMime)
+			url = durl
+			fmt.Println(url, del)
 		case "Flickr":
 		case "Baidu":
 		case "Qihoo":
