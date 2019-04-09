@@ -1,7 +1,8 @@
 package utils
 
 import (
-	"github.com/astaxie/beego/logs"
+	"go-figure-bed/pkg/logging"
+	"go.uber.org/zap"
 	"os"
 	"regexp"
 )
@@ -19,7 +20,7 @@ func CheckPath(path string) {
 	if _, err := os.Stat(path); err != nil {
 		err = os.MkdirAll(path, 0775)
 		if err != nil {
-			logs.Alert("Create Images store unsuccessful:", err)
+			logging.AppLogger.Error("Create Images store unsuccessful:", zap.Error(err))
 			return
 		}
 	}

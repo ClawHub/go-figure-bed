@@ -35,8 +35,9 @@ var ServerSetting = &Server{}
 
 //图床配置
 type Bed struct {
-	LocalStore
+	Local
 	Sina
+	Flickr
 }
 
 var BedSetting = &Bed{}

@@ -119,13 +119,36 @@ func HandleApis(email string, apis []string, f multipart.File, h *multipart.File
 			durl, del := server.UploadToCC(fileContent, imgInfo, imgMime)
 			url = durl
 			fmt.Println(url, del)
-		case "Flickr":
+		case "Flickr": //雅虎图片服务器，国内访问吃力
+			if setting.BedSetting.Flickr.OpenFlickrStore == false {
+				url = ""
+			} else {
+				file, err := h.Open()
+				if err != nil {
+				}
+				url = server.UploadToFlickr(file, h.Filename)
+			}
+			fmt.Println(url)
 		case "Baidu":
+			url = server.UploadToBaidu(fileContent, imgInfo)
+			fmt.Println(url)
 		case "Qihoo":
+			url = server.UploadToQihoo(fileContent, imgInfo, imgMime)
+			fmt.Println(url)
 		case "NetEasy":
+			url = server.UploadToNetEasy(fileContent, imgInfo, imgMime)
+			fmt.Println(url)
 		case "Jd":
+			url = server.UploadToJd(fileContent, imgInfo, imgMime)
+			fmt.Println(url)
+		case "JueJin":
+			url = server.UploadToJueJin(fileContent, imgInfo, imgMime)
 		case "Ali":
+			url = server.UploadToAli(fileContent, imgInfo, imgMime)
+			fmt.Println(url)
 		case "Open":
+			url = server.UpLoadToPublicSina(fileContent, imgInfo, imgMime)
+			fmt.Println(url)
 		}
 	}
 	//迭代apis

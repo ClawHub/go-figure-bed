@@ -135,6 +135,18 @@
 			"revisionTime": "2017-07-30T05:02:35Z"
 		},
 		{
+			"checksumSHA1": "0u1UOjPdHU2vVXaEFCRjc1Wgzbg=",
+			"path": "gopkg.in/masci/flickr.v2",
+			"revision": "3cc496dc15cd2a9460265656665423635e0a4a0b",
+			"revisionTime": "2016-12-16T03:34:41Z"
+		},
+		{
+			"checksumSHA1": "z2bELzVKOwdGGMvtNEU7h5poGSk=",
+			"path": "gopkg.in/masci/flickr.v2/error",
+			"revision": "3cc496dc15cd2a9460265656665423635e0a4a0b",
+			"revisionTime": "2016-12-16T03:34:41Z"
+		},
+		{
 			"checksumSHA1": "2FnVZ1894IO0AC4WA2UCvzlGOTQ=",
 			"path": "gopkg.in/natefinch/lumberjack.v2",
 			"revision": "a96e63847dc3c67d17befa69c303767e2f84e54f",

@@ -1,7 +1,7 @@
 package setting
 
 //上传到本地
-type LocalStore struct {
+type Local struct {
 	Open            bool
 	StorageLocation string
 	Link            string
@@ -21,32 +21,16 @@ type Sina struct {
 	DefultPicSize string
 }
 
-//Sina 图床 json
-type SinaMsg struct {
-	Code string   `json:"code"`
-	Data SinaData `json:"data"`
-}
-
-type SinaData struct {
-	Count int      `json:"count"`
-	Data  string   `json:"data"`
-	Pics  SinaPics `json:"pics"`
-}
-
-type SinaPics struct {
-	Pic_1 picInfo `json:"pic_1"`
-}
-
-type picInfo struct {
-	Width  int    `json:"width"`
-	Size   int    `json:"size"`
-	Ret    int    `json:"ret"`
-	Height int    `json:"height"`
-	Name   string `json:"name"`
-	Pid    string `json:"pid"`
-}
-
-type SinaError struct {
-	Retcode string `json:"retcode"`
-	Reason  string `json:"reason"`
+//雅虎
+type Flickr struct {
+	//default size
+	DefaultSize string
+	//api_key
+	Id               string
+	ApiKey           string
+	ApiSecret        string
+	OauthToken       string
+	OauthTokenSecret string
+	//是否开启 flickr 图床 (此功能该可以在后台开启)
+	OpenFlickrStore bool
 }

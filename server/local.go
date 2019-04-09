@@ -14,13 +14,13 @@ import (
 //图片上传到本地
 func UpLoadToLocal(name string, fileContent []byte) (string, string, string, string) {
 	//上传本地开关是否开启
-	if !setting.BedSetting.LocalStore.Open {
+	if !setting.BedSetting.Local.Open {
 		return "", "", "", ""
 	}
 	//网站链接
 	host := &setting.AppSetting.SiteUrl
-	storeLocation := &setting.BedSetting.LocalStore.StorageLocation
-	softLink := &setting.BedSetting.LocalStore.Link
+	storeLocation := &setting.BedSetting.Local.StorageLocation
+	softLink := &setting.BedSetting.Local.Link
 
 	//修正URL
 	utils.FormatUrl(softLink)
