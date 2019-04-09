@@ -5,12 +5,11 @@ import (
 	"regexp"
 )
 
-func UploadToQihoo(img []byte, imgInfo string, imgType string) string {
+func UploadToQihoo(img []byte, imgName string, imgType string) string {
 	url := "http://st.so.com/stu"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "upload",
 		Value: img,
 		Type:  imgType,

@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"go-figure-bed/pkg/e/bed"
 	"go-figure-bed/pkg/logging"
-	"go-figure-bed/pkg/utils"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"mime/multipart"
@@ -13,12 +12,11 @@ import (
 )
 
 //上传 SM 图床 返回图片 URL
-func UploadToSmms(img []byte, imgInfo string) string {
+func UploadToSmms(img []byte, imgName string) string {
 	body := new(bytes.Buffer)
 	w := multipart.NewWriter(body)
 	contentType := w.FormDataContentType()
-	name := utils.GetFileNameByMimeType(imgInfo)
-	file, _ := w.CreateFormFile("smfile", name)
+	file, _ := w.CreateFormFile("smfile", imgName)
 	_, _ = file.Write(img)
 	_ = w.Close()
 	req, _ := http.NewRequest("POST", "https://sm.ms/api/upload", body)

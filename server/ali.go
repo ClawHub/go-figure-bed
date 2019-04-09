@@ -6,12 +6,11 @@ import (
 	"go-figure-bed/pkg/utils"
 )
 
-func UploadToAli(img []byte, imgInfo string, imgType string) string {
+func UploadToAli(img []byte, imgName string, imgType string) string {
 	url := "https://kfupload.alibaba.com/mupload"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "file",
 		Value: img,
 		Type:  imgType,

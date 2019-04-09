@@ -14,8 +14,10 @@ type App struct {
 	SiteUploadMaxNumber int
 	//最大图片规格 MB
 	SiteUploadMaxSize int64
-	//Api 默认上传图床
-	ApiDefault string
+	//根节点图床
+	RootSiteApi []string
+	//其他节点
+	OtherSiteApi []string
 	//网站链接
 	SiteUrl string
 }

@@ -7,12 +7,11 @@ import (
 	"strconv"
 )
 
-func UploadToJd(img []byte, imgInfo string, imgType string) string {
+func UploadToJd(img []byte, imgName string, imgType string) string {
 	url := "https://search.jd.com/image?op=upload"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "file",
 		Value: img,
 		Type:  imgType,

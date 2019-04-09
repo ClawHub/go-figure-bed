@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"go-figure-bed/pkg/gmysql"
 	"go-figure-bed/pkg/logging"
 	"go-figure-bed/pkg/setting"
 	"go-figure-bed/routers"
@@ -20,6 +21,8 @@ func init() {
 	setting.Setup()
 	//日志配置
 	logging.Setup()
+	//mysql配置
+	gmysql.Setup()
 }
 
 //系统启动项

@@ -6,12 +6,11 @@ import (
 	"go-figure-bed/pkg/utils"
 )
 
-func UploadToJueJin(img []byte, imgInfo string, imgType string) string {
+func UploadToJueJin(img []byte, imgName string, imgType string) string {
 	url := "https://cdn-ms.juejin.im/v1/upload?bucket=gold-user-assets"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "file",
 		Value: img,
 		Type:  imgType,

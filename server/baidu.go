@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"go-figure-bed/pkg/e/bed"
 	"go-figure-bed/pkg/logging"
-	"go-figure-bed/pkg/utils"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"mime/multipart"
@@ -13,12 +12,11 @@ import (
 )
 
 //百度识图的接口
-func UploadToBaidu(img []byte, imgInfo string) string {
+func UploadToBaidu(img []byte, imgName string) string {
 	body := new(bytes.Buffer)
 	w := multipart.NewWriter(body)
 	contentType := w.FormDataContentType()
-	name := utils.GetFileNameByMimeType(imgInfo)
-	file, _ := w.CreateFormFile("Filedata", name)
+	file, _ := w.CreateFormFile("Filedata", imgName)
 	_, _ = file.Write(img)
 	_ = w.WriteField("file", "multipart")
 	_ = w.Close()

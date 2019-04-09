@@ -8,12 +8,11 @@ import (
 	"go.uber.org/zap"
 )
 
-func UploadToCC(img []byte, imgInfo string, imgType string) (string, string) {
+func UploadToCC(img []byte, imgName string, imgType string) (string, string) {
 	url := "https://upload.cc/image_upload"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "uploaded_file[]",
 		Value: img,
 		Type:  imgType,

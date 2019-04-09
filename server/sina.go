@@ -70,7 +70,7 @@ func getCookies(durl string, data map[string]string) interface{} {
 }
 
 //上传图片
-func UpLoadToSina(img []byte, imgType string) string {
+func UpLoadToSina(img []byte, imgMime string) string {
 	//是否开启新浪图床
 	if setting.BedSetting.Sina.OpenSinaPicStore == false {
 		return ""
@@ -101,11 +101,11 @@ func UpLoadToSina(img []byte, imgType string) string {
 	resp, err := client.Do(request)
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-	return getSinaUrl(body, imgType)
+	return getSinaUrl(body, imgMime)
 }
 
 //获取 Sina 图床 URL
-func getSinaUrl(body []byte, imgType string) string {
+func getSinaUrl(body []byte, imgMime string) string {
 	str := string(body)
 	//正则获取
 	pat := "({.*)"
@@ -125,8 +125,8 @@ func getSinaUrl(body []byte, imgType string) string {
 		sinaNumber := fmt.Sprint((crc32.ChecksumIEEE([]byte(pid)) & 3) + 1)
 		//从配置文件中获取
 		size := setting.BedSetting.Sina.DefultPicSize
-		n := len(imgType)
-		rs := []rune(imgType)
+		n := len(imgMime)
+		rs := []rune(imgMime)
 		suffix := string(rs[6:n])
 		if suffix != "gif" {
 			suffix = "jpg"

@@ -6,12 +6,11 @@ import (
 	"go-figure-bed/pkg/utils"
 )
 
-func UploadToNetEasy(img []byte, imgInfo string, imgType string) string {
+func UploadToNetEasy(img []byte, imgName string, imgType string) string {
 	url := "http://you.163.com/xhr/file/upload.json"
-	name := utils.GetFileNameByMimeType(imgInfo)
 
 	file := &utils.FormFile{
-		Name:  name,
+		Name:  imgName,
 		Key:   "file",
 		Value: img,
 		Type:  imgType,
