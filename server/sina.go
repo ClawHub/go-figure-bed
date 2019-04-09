@@ -19,9 +19,6 @@ import (
 	"time"
 )
 
-//图片类型
-var picType = []string{"png", "jpg", "jpeg", "gif", "bmp"}
-
 //缓存
 var memoryCache, _ = cache.NewCache("memory", `{"interval":3600}`)
 

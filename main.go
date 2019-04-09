@@ -20,7 +20,6 @@ func init() {
 	setting.Setup()
 	//日志配置
 	logging.Setup()
-	//定时任务启动
 }
 
 //系统启动项
