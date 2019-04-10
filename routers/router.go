@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-figure-bed/pkg/setting"
 	"go-figure-bed/routers/api"
-	"net/http"
 )
 
 //初始化路由
@@ -26,6 +25,12 @@ func InitRouter() *gin.Engine {
 	//上传图片
 	r.POST("/upload", api.UploadImage)
 	//下载图片
-	r.StaticFS(setting.BedSetting.Link, http.Dir(setting.BedSetting.StorageLocation))
+	//r.StaticFS(setting.BedSetting.Link, http.Dir(setting.BedSetting.StorageLocation))
+
+	//读取图片
+	r.GET("/image/*mainUrl", api.GetImage)
+
+	//检测并修复库中失效图片url
+	r.GET("/autoCheckRepair", api.AutoCheckRepair)
 	return r
 }
