@@ -11,7 +11,7 @@ import (
 )
 
 //文件类型
-var picType = []string{"png", "jpg", "jpeg", "gif", "bmp"}
+var picType = []string{"png", "jpg", "jpeg", "gif", "bmp", "ico"}
 
 //通过 MimeType 信息获取文件名称
 func GetFileNameByMimeType(info string) string {

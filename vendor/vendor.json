@@ -63,16 +63,42 @@
 			"revisionTime": "2019-02-17T19:54:15Z"
 		},
 		{
+			"checksumSHA1": "WIiUhgnAiTtSI6Vm+RrJgzjY0lI=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "Wp97rIwFg54dNwuCeR9Vslaehtw=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "d3c38a4eb4970272b87a425ae00ccc4548e2f9bb",
 			"revisionTime": "2019-03-18T19:48:12Z"
 		},
 		{
+			"checksumSHA1": "mNJq17mONQsTfEIjjTc6pnbUYRs=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "w5/naAzcG0+g6aYx63/of1Wbgqw=",
+			"path": "github.com/jinzhu/gorm/dialects/mysql",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "mfb/EusMwfajCPq0lwLWM/pvqI4=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "A7CA8kdeDAQo6tsMv2kXK+Hm7/Y=",
 			"path": "github.com/mattn/go-isatty",
 			"revision": "c2a7a6ca930a4cd0bc33a3f298eb71960732a3a7",
 			"revisionTime": "2019-03-12T13:58:54Z"
+		},
+		{
+			"checksumSHA1": "KOzFlzcbhrnQLcmxO0AdJRXm0nk=",
+			"path": "github.com/sony/sonyflake",
+			"revision": "6d5bd61810093eae37d7d605d0cbdd845969b5b2",
+			"revisionTime": "2018-11-09T02:24:03Z"
 		},
 		{
 			"checksumSHA1": "sSHNkFYd8rSuKmTIkEstqpGqy4I=",

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"go-figure-bed/service"
 	"net/http"
@@ -9,7 +10,10 @@ import (
 //获取图片
 func GetImage(c *gin.Context) {
 	mainUrl := c.Param("mainUrl")
-	url := service.Download(mainUrl, "guest")
+	email := c.DefaultQuery("email", "guest")
+	fmt.Println(mainUrl)
+	fmt.Println(email)
+	url := service.Download(mainUrl, email)
 	if url != "" {
 		c.Redirect(http.StatusMovedPermanently, url)
 	}

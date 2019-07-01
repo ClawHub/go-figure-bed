@@ -52,8 +52,7 @@ func WhichApi(email, api, imgMime, imgName, mainUrl string, fileContent []byte, 
 	//API图床选择
 	switch api {
 	case "Local":
-		showUrl, _, _, _ := server.UpLoadToLocal(imgName, fileContent)
-		url = showUrl
+		url, _, _, _ = server.UpLoadToLocal(imgName, fileContent)
 	case "SouGou":
 		url = server.UpLoadToSouGou(fileContent)
 	case "Sina":

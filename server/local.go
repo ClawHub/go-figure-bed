@@ -21,7 +21,6 @@ func UpLoadToLocal(name string, fileContent []byte) (string, string, string, str
 	host := &setting.AppSetting.SiteUrl
 	storeLocation := &setting.BedSetting.Local.StorageLocation
 	softLink := &setting.BedSetting.Local.Link
-
 	//修正URL
 	utils.FormatUrl(softLink)
 	utils.FormatUrl(host)
