@@ -1,8 +1,7 @@
 package setting
 
 import (
-	"go-figure-bed/pkg/logging"
-	"go.uber.org/zap"
+	"log"
 	"time"
 
 	"github.com/go-ini/ini"
@@ -50,7 +49,7 @@ func Setup() {
 	var err error
 	cfg, err = ini.Load("app.ini")
 	if err != nil {
-		logging.AppLogger.Fatal("setting.Setup, fail to parse 'app.ini' ", zap.Error(err))
+		log.Fatal("setting.Setup, fail to parse 'app.ini' ", err)
 	}
 
 	MapTo("app", AppSetting)
@@ -66,12 +65,12 @@ func Setup() {
 func MapTo(section string, v interface{}) {
 	err := cfg.Section(section).MapTo(v)
 	if err != nil {
-		logging.AppLogger.Fatal("Cfg.MapTo Setting err' ", zap.Error(err))
+		log.Fatal("Cfg.MapTo Setting err' ", err)
 	}
 }
 func MapToRoot(v interface{}) {
 	err := cfg.MapTo(v)
 	if err != nil {
-		logging.AppLogger.Fatal("Cfg.MapToRoot Setting err' ", zap.Error(err))
+		log.Fatal("Cfg.MapToRoot Setting err' ", err)
 	}
 }
